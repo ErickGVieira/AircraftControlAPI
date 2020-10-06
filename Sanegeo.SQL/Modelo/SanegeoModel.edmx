@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SanegeoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Aeronave">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PREFIX" Type="nchar" MaxLength="6" Nullable="false" />
+          <Property Name="MAX_DEPARTURE_WEIGHT" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="MAX_LANDING_WEIGHT" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="AIRCRAFT_MODEL" Type="nchar" MaxLength="4" />
+          <Property Name="PASSENGERS_COUNT_AIRCRAFT" Type="int" />
+        </EntityType>
+        <EntityType Name="Modelo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODE" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="ALTERNATIVE_CODE" Type="nchar" MaxLength="4" />
+          <Property Name="MAX_DEPARTURE_WEIGHT" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="MAX_LANDING_WEIGHT" Type="decimal" Precision="3" Scale="0" />
+        </EntityType>
+        <EntityContainer Name="SanegeoModelStoreContainer">
+          <EntitySet Name="Aeronave" EntityType="Self.Aeronave" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modelo" EntityType="Self.Modelo" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SanegeoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SanegeoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Aeronaves" EntityType="SanegeoModel.Aeronave" />
+          <EntitySet Name="Modeloes" EntityType="SanegeoModel.Modelo" />
+        </EntityContainer>
+        <EntityType Name="Aeronave">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="PREFIX" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="true" />
+          <Property Name="MAX_DEPARTURE_WEIGHT" Type="Decimal" Nullable="false" Precision="3" Scale="0" />
+          <Property Name="MAX_LANDING_WEIGHT" Type="Decimal" Nullable="false" Precision="3" Scale="0" />
+          <Property Name="ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="AIRCRAFT_MODEL" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+          <Property Name="PASSENGERS_COUNT_AIRCRAFT" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Modelo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="CODE" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="true" />
+          <Property Name="ALTERNATIVE_CODE" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+          <Property Name="MAX_DEPARTURE_WEIGHT" Type="Decimal" Nullable="false" Precision="3" Scale="0" />
+          <Property Name="MAX_LANDING_WEIGHT" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SanegeoModelStoreContainer" CdmEntityContainer="SanegeoEntities">
+          <EntitySetMapping Name="Aeronaves">
+            <EntityTypeMapping TypeName="SanegeoModel.Aeronave">
+              <MappingFragment StoreEntitySet="Aeronave">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PASSENGERS_COUNT_AIRCRAFT" ColumnName="PASSENGERS_COUNT_AIRCRAFT" />
+                <ScalarProperty Name="AIRCRAFT_MODEL" ColumnName="AIRCRAFT_MODEL" />
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="MAX_LANDING_WEIGHT" ColumnName="MAX_LANDING_WEIGHT" />
+                <ScalarProperty Name="MAX_DEPARTURE_WEIGHT" ColumnName="MAX_DEPARTURE_WEIGHT" />
+                <ScalarProperty Name="PREFIX" ColumnName="PREFIX" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modeloes">
+            <EntityTypeMapping TypeName="SanegeoModel.Modelo">
+              <MappingFragment StoreEntitySet="Modelo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MAX_LANDING_WEIGHT" ColumnName="MAX_LANDING_WEIGHT" />
+                <ScalarProperty Name="MAX_DEPARTURE_WEIGHT" ColumnName="MAX_DEPARTURE_WEIGHT" />
+                <ScalarProperty Name="ALTERNATIVE_CODE" ColumnName="ALTERNATIVE_CODE" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
